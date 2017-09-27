@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenith", "Zenith\Zenith.csproj", "{7C64AAFD-44D2-4A2F-9241-30589737AA8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZenithDataLib", "ZenithDataLib\ZenithDataLib.csproj", "{23E60239-1ECB-48D0-99AA-A32FE2347BEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7C64AAFD-44D2-4A2F-9241-30589737AA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C64AAFD-44D2-4A2F-9241-30589737AA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C64AAFD-44D2-4A2F-9241-30589737AA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E60239-1ECB-48D0-99AA-A32FE2347BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E60239-1ECB-48D0-99AA-A32FE2347BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E60239-1ECB-48D0-99AA-A32FE2347BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E60239-1ECB-48D0-99AA-A32FE2347BEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
