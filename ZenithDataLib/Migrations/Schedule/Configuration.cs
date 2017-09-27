@@ -5,16 +5,15 @@ namespace ZenithDataLib.Migrations.Schedule
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Zenith.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ZenithDataLib.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\Schedule";
-            ContextKey = "Zenith.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Zenith.Models.ApplicationDbContext context)
+        protected override void Seed(ZenithDataLib.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -28,6 +27,7 @@ namespace ZenithDataLib.Migrations.Schedule
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            
         }
     }
 }

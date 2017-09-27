@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ZenithDataLib
+namespace ZenithDataLib.Models
 {
     public class ActivityCategory
     {
+        
         public int ActivityCategoryId { get; set; }
 
         public string ActivityDescription { get; set; }
 
         public DateTime CreationDate { get; set; }
     }
+    
 }
