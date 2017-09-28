@@ -6,7 +6,7 @@ Enable-Migrations -ProjectName ZenithDataLib -ContextTypeName ApplicationDbConte
 Enable-Migrations -ContextTypeName ApplicationDbContext -MigrationsDirectory Migrations\Schedule
 
 //Adds the up down functions 
-add-migration -ConfigurationTypeName EntityCodeFirst.Migrations.Hockey.Configuration "Initial Create"
+add-migration -ConfigurationTypeName ZenithDataLib.Migrations.Schedule.Configuration "Initial Create"
 
 //updates the database
-update-database -ConfigurationTypeName EntityCodeFirst.Migrations.Hockey.Configuration 
+update-database -ConfigurationTypeName ZenithDataLib.Migrations.Schedule.Configuration 
