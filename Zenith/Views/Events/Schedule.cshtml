@@ -1,0 +1,26 @@
+﻿@model Zenith.Models.ScheduleViewModel
+
+<br/>
+<div class="container">
+    <table class="table table-bordered">
+        @foreach (var day in Model.DaysAndEvents)
+        {
+            if (day.Value.Count != 0)
+            {
+                <tr>
+                    <td style="text-align:center;"colspan="2">
+                        @day.Key
+                    </td>
+                </tr>
+                foreach (var e in day.Value)
+                {
+                    <tr>
+                        <td>@e.StartDateTime.TimeOfDay - @e.EndDateTime.TimeOfDay</td>
+                        <td>@e.ActivityCategory.ActivityDescription</td>
+                    </tr>
+                }
+
+            }
+        }
+    </table>
+</div>

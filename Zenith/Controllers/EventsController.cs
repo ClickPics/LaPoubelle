@@ -8,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ZenithDataLib.Models;
+using System.Globalization;
+using Zenith.Models;
 
 namespace Zenith.Controllers
 {
@@ -22,7 +24,57 @@ namespace Zenith.Controllers
             var events = db.Events.Include(E => E.ActivityCategory);
             return View(await events.ToListAsync());
         }
+        public async Task<ActionResult> Schedule()
+        {
+            return View(getDic());
+        }
+        public ScheduleViewModel getDic()
+        {
+            DateTime startOfWeek = DateTime.Today.AddDays(
+                (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek -
+                (int)DateTime.Today.DayOfWeek);
 
+            string result = string.Join("," + Environment.NewLine, Enumerable
+              .Range(0, 7)
+              .Select(i => startOfWeek
+                 .AddDays(i)
+                 .ToString("dd-MMMM-yyyy")));
+            var weekDays = result.Split(',');
+            List<DateTime> dates = new List<DateTime>();
+            foreach(var w in weekDays)
+            {
+                dates.Add(Convert.ToDateTime(w));
+            }
+
+            //can't get this this to work; can't use datetimes in linq query, all online says is dbfunctions.truncatetime but still doesn't work
+            //var events = db.Events.Include(e => e.ActivityCategory).Where(e => dates.Any(d => DbFunctions.TruncateTime(d.Date) == e.CreationDate.Date)).ToList();
+
+            var events = db.Events.Include(e => e.ActivityCategory).ToList();
+            Dictionary<string, List<Event>> dic = new Dictionary<string, List<Event>>();
+            foreach (var d in dates)
+            {
+                dic.Add(GetDateString(d), new List<Event>());
+                foreach (var e in events)
+                {
+                    if(e.StartDateTime.Date == d.Date)
+                    {
+                        dic[GetDateString(d)].Add(e);
+                    }
+                }
+            }
+            
+
+            return new ScheduleViewModel()
+            {
+                DaysAndEvents = dic
+            };
+
+
+        }
+        public string GetDateString(DateTime date)
+        {
+            return date.DayOfWeek.ToString() + " " + date.ToString("MMMM") + " " + date.Day.ToString() + ", " + date.Year.ToString();
+        }
         // GET: Events/Details/5
         public async Task<ActionResult> Details(int? id)
         {
