@@ -8,6 +8,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ZenithDataLib.Models;
+using System.Globalization;
+using Zenith.Models;
+using Zenith.Util;
 
 namespace Zenith.Controllers
 {
@@ -19,10 +22,24 @@ namespace Zenith.Controllers
         // GET: Events
         public async Task<ActionResult> Index()
         {
-            var events = db.Events.Include(E => E.ActivityCategory);
-            return View(await events.ToListAsync());
-        }
+            var dates = EventUtil.GetDaysOfCurrentWeek();
 
+            var events = db.Events.Include(e => e.ActivityCategory).ToList();
+            Dictionary<string, List<Event>> dic = new Dictionary<string, List<Event>>();
+            foreach (var d in dates)
+            {
+                dic.Add(d.ToString("D", new CultureInfo("EN-US")), new List<Event>());
+                foreach (var e in events)
+                {
+                    if (e.StartDateTime.Date == d.Date)
+                    {
+                        dic[d.ToString("D", new CultureInfo("EN-US"))].Add(e);
+                    }
+                }
+            }
+            return View( new ScheduleViewModel(){ DaysAndEvents = dic });
+        }
+       
         // GET: Events/Details/5
         public async Task<ActionResult> Details(int? id)
         {
