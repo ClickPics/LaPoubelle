@@ -24,7 +24,7 @@ namespace Zenith.Controllers
         {
             var dates = EventUtil.GetDaysOfCurrentWeek();
 
-            var events = db.Events.Include(e => e.ActivityCategory).ToList();
+            var events = db.Events.Include(e => e.ActivityCategory).Where(e => e.IsActive == true).ToList();
             Dictionary<string, List<Event>> dic = new Dictionary<string, List<Event>>();
             foreach (var d in dates)
             {
@@ -39,7 +39,11 @@ namespace Zenith.Controllers
             }
             return View( new ScheduleViewModel(){ DaysAndEvents = dic });
         }
-       
+        public async Task<ActionResult> Manage()
+        {
+            return View(await db.Events.Include(e => e.ActivityCategory).ToListAsync());
+        }
+
         // GET: Events/Details/5
         public async Task<ActionResult> Details(int? id)
         {
