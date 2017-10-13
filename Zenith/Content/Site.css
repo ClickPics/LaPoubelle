@@ -22,3 +22,24 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.navbar-fixed-top {
+    background: #272b30;
+    border-bottom: 2px solid darkcyan;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .open .dropdown-toggle.btn {
+    background-color: lightpink;
+    border-color: black;
+}
+
+.btn {
+    background-color: darkcyan;
+    border-color: black;
+}
+
+th {
+    background-color: darkcyan;
+    color: black;
+    font-weight: normal;
+}
