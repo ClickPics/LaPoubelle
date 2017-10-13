@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ZenithDataLib.Models.Event>
+﻿@*@model IEnumerable<ZenithDataLib.Models.Event>
 
 @{
     ViewBag.Title = "Eventy Index";
@@ -55,18 +55,14 @@
         </tr>
     }
 
-</table>
+</table>*@
 
 
 
-@*@model Zenith.Models.ScheduleViewModel
+@model Zenith.Models.ScheduleViewModel
 
 <br />
 <div class="container">
-    <div style="text-align:center;">
-    <input type="button" class="btn btn-primary" value="Manage Events" onclick="location.href='@Url.Action("Manage", "Events")'" />
-    </div>
-    <br/>
     <table class="table table-bordered">
         @foreach (var day in Model.DaysAndEvents)
         {
@@ -88,4 +84,4 @@
             }
         }
     </table>
-</div>*@
+</div>

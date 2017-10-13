@@ -22,6 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Events", "Index", "Events")</li>
@@ -36,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Clickpics.xyz</p>
         </footer>
     </div>
 
