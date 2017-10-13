@@ -1,4 +1,4 @@
-namespace ZenithDataLib.Migrations.Schedule
+namespace Zenith.Migrations.Schedule
 {
     using System;
     using System.Data.Entity.Migrations;

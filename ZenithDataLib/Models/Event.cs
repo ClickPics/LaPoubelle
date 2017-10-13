@@ -10,6 +10,7 @@ namespace ZenithDataLib.Models
 {
     public class Event
     {
+        [Display(Name = "Event")]
         public int EventId { get; set; }
 
         [Display(Name = "Start Time")]
@@ -24,12 +25,14 @@ namespace ZenithDataLib.Models
         [Display(Name = "Created On")]
         public DateTime CreationDate { get; set; }
 
+        [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
 
 
 
         [ForeignKey("ActivityCategory")]
+        [Display(Name = "Activity Category")]
         public int ActivityCategoryId { get; set; }
 
         [Display(Name = "Activity Description")]

@@ -11,7 +11,7 @@ namespace Zenith.Util
         public static List<DateTime> GetDaysOfCurrentWeek()
         {
             DateTime startOfWeek = DateTime.Today.AddDays(
-                (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek -
+                ((int)(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 1)) -
                 (int)DateTime.Today.DayOfWeek);
 
             var result = Enumerable

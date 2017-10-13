@@ -20,10 +20,10 @@ namespace Zenith.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Events
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             var dates = EventUtil.GetDaysOfCurrentWeek();
-
             var events = db.Events.Include(e => e.ActivityCategory).Where(e => e.IsActive == true).ToList();
             Dictionary<string, List<Event>> dic = new Dictionary<string, List<Event>>();
             foreach (var d in dates)
@@ -51,7 +51,7 @@ namespace Zenith.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Events.FindAsync(id);
+            Event @event = await db.Events.Include(e => e.ActivityCategory).Where(e => e.EventId == id).FirstOrDefaultAsync();
             if (@event == null)
             {
                 return HttpNotFound();

@@ -9,7 +9,7 @@ namespace ZenithDataLib.Models
 {
     public class ActivityCategory
     {
-        
+        [Display(Name = "Activity Category")]
         public int ActivityCategoryId { get; set; }
 
         [Display(Name = "Activity Description")]
