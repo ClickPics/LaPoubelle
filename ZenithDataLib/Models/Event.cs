@@ -23,7 +23,7 @@ namespace ZenithDataLib.Models
         public string Username { get; set; }
 
         [Display(Name = "Created On")]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
 
         [Display(Name = "Active")]
         public bool IsActive { get; set; }

@@ -1,4 +1,5 @@
-﻿@model Zenith.Models.ScheduleViewModel
+﻿
+@model Zenith.Models.ScheduleViewModel
 
 <br />
 <div class="container">
@@ -20,9 +21,12 @@
                     </td>
                 </tr>
                 foreach (var e in day.Value)
-                {
+                {   
+                    var startDate = new DateTime(e.StartDateTime.TimeOfDay.Ticks).ToString("h:mm tt");
+                    var endDate   = new DateTime(e.EndDateTime.TimeOfDay.Ticks).ToString("h:mm tt");
+
                     <tr>
-                        <td>@e.StartDateTime.TimeOfDay - @e.EndDateTime.TimeOfDay</td>
+                        <td>@startDate - @endDate</td>
                         <td>@e.ActivityCategory.ActivityDescription</td>
                     </tr>
                 }

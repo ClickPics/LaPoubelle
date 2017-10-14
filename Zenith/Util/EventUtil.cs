@@ -12,7 +12,7 @@ namespace Zenith.Util
         {
             DateTime startOfWeek = DateTime.Today.AddDays(
                 ((int)(CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek + 1)) -
-                (int)DateTime.Today.DayOfWeek);
+                 (int)DateTime.Today.DayOfWeek);
 
             var result = Enumerable
               .Range(0, 7)
