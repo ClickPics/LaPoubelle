@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZenithDataLib.Validation;
 
 namespace ZenithDataLib.Models
 {
@@ -14,9 +15,11 @@ namespace ZenithDataLib.Models
         public int EventId { get; set; }
 
         [Display(Name = "Start Time")]
+        
         public DateTime StartDateTime { get; set; }
 
         [Display(Name = "End Time")]
+        [DateValidation]
         public DateTime EndDateTime { get; set; }
 
         [Display(Name = "Created By")]
