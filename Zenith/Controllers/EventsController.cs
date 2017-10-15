@@ -7,17 +7,26 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ZenithDataLib.Models;
 using System.Globalization;
 using Zenith.Models;
 using Zenith.Util;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Zenith.Controllers
 {
     [Authorize(Roles="Admin")]
     public class EventsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db;
+        private UserManager<ApplicationUser> manager;
+
+        public EventsController()
+        {
+            db      = new ApplicationDbContext();
+            manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
 
         // GET: Events
         [AllowAnonymous]
@@ -25,6 +34,10 @@ namespace Zenith.Controllers
         {
             var dates = EventUtil.GetDaysOfCurrentWeek();
             var events = db.Events.Include(e => e.ActivityCategory).Where(e => e.IsActive == true).ToList();
+
+            // Sort the events by date time
+            events.Sort((x, y) => x.StartDateTime.CompareTo(y.StartDateTime));
+
             Dictionary<string, List<Event>> dic = new Dictionary<string, List<Event>>();
             foreach (var d in dates)
             {
@@ -75,6 +88,8 @@ namespace Zenith.Controllers
         {
             if (ModelState.IsValid)
             {
+                @event.Username = manager.FindById(User.Identity.GetUserId()).UserName;
+
                 db.Events.Add(@event);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

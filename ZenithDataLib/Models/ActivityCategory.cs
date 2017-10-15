@@ -16,7 +16,7 @@ namespace ZenithDataLib.Models
         public string ActivityDescription { get; set; }
 
         [Display(Name = "Created On")]
-        public DateTime CreationDate { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.Now;
     }
     
 }
